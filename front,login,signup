@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Pooling App</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 20px 30px;
+            border: 1px solid #000;
+            box-shadow: 2px 2px 0 black;
+            width: 100%;
+            max-width: 400px;
+            display: none;
+        }
+
+        .container.active {
+            display: block;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #000;
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 0 #000;
+            border-radius: 2px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .link {
+            background: none;
+            color: blue;
+            border: none;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #000;
+            border-radius: 2px;
+            box-shadow: inset 2px 2px 0 #000;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .smiley {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Page -->
+    <div class="container active" id="home-page">
+        <div class="smiley">😊</div>
+        <h1>Welcome to Car Pooling</h1>
+        <p>Join our community to carpool and reduce your carbon footprint!</p>
+        <button onclick="showPage('login-page')">Login</button>
+        <button onclick="showPage('signup-page')">Signup</button>
+    </div>
+
+    <!-- Login Page -->
+    <div class="container" id="login-page">
+        <h1>Login</h1>
+        <form>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+            <button type="button" class="link" onclick="showPage('home-page')">Back to Home</button>
+        </form>
+    </div>
+
+    <!-- Signup Page -->
+    <div class="container" id="signup-page">
+        <h1>Signup</h1>
+        <form>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" placeholder="Your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="signup-email" placeholder="Your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="signup-password" placeholder="Pick a password" required>
+                <p class="hint">Use at least one letter, one numeral, and seven characters.</p>
+            </div>
+            <button type="submit">Signup</button>
+            <button type="button" class="link" onclick="showPage('home-page')">Back to Home</button>
+        </form>
+    </div>
+
+    <!-- Profile Page -->
+    <div class="container" id="profile-page">
+        <h1>Profile</h1>
+        <p>Welcome, John Doe!</p>
+        <button onclick="showPage('find-ride-page')">Find a Ride</button>
+        <button onclick="showPage('offer-ride-page')">Offer a Ride</button>
+        <button onclick="showPage('home-page')">Logout</button>
+    </div>
+
+    <!-- Find Ride Page -->
+    <div class="container" id="find-ride-page">
+        <h1>Find a Ride</h1>
+        <form>
+            <div class="form-group">
+                <label for="from">From</label>
+                <input type="text" id="from" placeholder="Starting location" required>
+            </div>
+            <div class="form-group">
+                <label for="to">To</label>
+                <input type="text" id="to" placeholder="Destination" required>
+            </div>
+            <button type="submit">Search</button>
+        </form>
+        <button type="button" class="link" onclick="showPage('profile-page')">Back to Profile</button>
+    </div>
+
+    <!-- Offer Ride Page -->
+    <div class="container" id="offer-ride-page">
+        <h1>Offer a Ride</h1>
+        <form>
+            <div class="form-group">
+                <label for="from-offer">From</label>
+                <input type="text" id="from-offer" placeholder="Starting location" required>
+            </div>
+            <div class="form-group">
+                <label for="to-offer">To</label>
+                <input type="text" id="to-offer" placeholder="Destination" required>
+            </div>
+            <div class="form-group">
+                <label for="seats">Seats Available</label>
+                <input type="number" id="seats" placeholder="Number of seats" required>
+            </div>
+            <button type="submit">Offer</button>
+        </form>
+        <button type="button" class="link" onclick="showPage('profile-page')">Back to Profile</button>
+    </div>
+
+    <!-- Script for Navigation -->
+    <script>
+        // Function to show the selected page and hide others
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.container');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
