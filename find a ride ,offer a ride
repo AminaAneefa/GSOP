@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Pooling - Offer a Ride</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .navbar {
+            background-color: white;
+            border-bottom: 2px solid black;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: blue;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .tab-container {
+            display: flex;
+            border-bottom: 2px solid black;
+            margin-top: 10px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border-right: 1px solid black;
+            font-size: 14px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .tab.active {
+            background: #f9f9f9;
+            font-weight: bold;
+        }
+
+        .tab:last-child {
+            border-right: none;
+        }
+
+        .container {
+            padding: 20px;
+            border: 2px solid black;
+            margin: 20px auto;
+            max-width: 600px;
+            background: white;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+        .form-group-inline {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-group-inline input {
+            flex: 1;
+        }
+
+        button {
+            background-color: #000;
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid black;
+            cursor: pointer;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .map {
+            margin-top: 20px;
+            background: lightgray;
+            width: 100%;
+            height: 200px;
+            border: 2px dashed black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <span>Hello John Doe</span>
+        <div>
+            <a href="#" onclick="showPage('find-ride')">Find Ride</a>
+            <a href="#" onclick="showPage('offer-ride')">Offer Ride</a>
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-container">
+        <div class="tab" id="find-tab" onclick="showPage('find-ride')">Find Ride</div>
+        <div class="tab" id="offer-tab" onclick="showPage('offer-ride')">Offer Ride</div>
+    </div>
+
+    <!-- Find Ride Page -->
+    <div class="container" id="find-ride">
+        <h1>Find a Ride</h1>
+        <p>You are helping to reduce traffic congestion inside the city!</p>
+        <form>
+            <div class="form-group">
+                <label for="from">From</label>
+                <input type="text" id="from" placeholder="Enter starting point">
+            </div>
+            <div class="form-group">
+                <label for="to">To</label>
+                <input type="text" id="to" placeholder="Enter destination">
+            </div>
+            <div class="form-group-inline">
+                <input type="date">
+                <input type="number" placeholder="Hour">
+                <input type="number" placeholder="Minutes">
+            </div>
+            <button type="submit">Search</button>
+        </form>
+        <div class="map">Map Placeholder</div>
+    </div>
+
+    <!-- Offer Ride Page -->
+    <div class="container" id="offer-ride" style="display: none;">
+        <h1>Offer a Ride</h1>
+        <p>You are helping colleagues, reducing traffic & saving environment!</p>
+        <form>
+            <div class="form-group">
+                <label for="from">From</label>
+                <input type="text" id="from-offer" placeholder="Enter starting point">
+            </div>
+            <div class="form-group">
+                <label for="to">To</label>
+                <input type="text" id="to-offer" placeholder="Enter destination">
+            </div>
+            <div class="form-group">
+                <label for="via">Via</label>
+                <input type="text" id="via" placeholder="Enter intermediate point">
+            </div>
+            <div class="form-group">
+                <label for="seats">Seats Available</label>
+                <input type="number" id="seats" placeholder="Enter number of seats">
+            </div>
+            <div class="form-group-inline">
+                <input type="date">
+                <input type="number" placeholder="Hour">
+                <input type="number" placeholder="Minutes">
+            </div>
+            <button type="submit">Offer</button>
+        </form>
+        <div class="map">Map Placeholder</div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.getElementById("find-ride").style.display = pageId === "find-ride" ? "block" : "none";
+            document.getElementById("offer-ride").style.display = pageId === "offer-ride" ? "block" : "none";
+
+            document.getElementById("find-tab").classList.toggle("active", pageId === "find-ride");
+            document.getElementById("offer-tab").classList.toggle("active", pageId === "offer-ride");
+        }
+    </script>
+</body>
+</html>
